@@ -1,0 +1,148 @@
+\documentclass{article}
+
+\usepackage[T2A]{fontenc}           
+\usepackage[utf8]{inputenc}         
+\usepackage[russian,english]{babel} 
+\usepackage{amsmath,amssymb}        
+\usepackage{listings}
+\usepackage{cmll}
+\usepackage[left=15mm, top=1cm, right=15mm, bottom=1cm, nohead, footskip=1cm]{geometry}
+\usepackage{fontspec} 
+\usepackage{misccorr} 
+\setmainfont{Times New Roman}
+ 
+\newcommand{\problem}[1]{\textbf{Problem #1} \newline}
+  
+\newcommand{\solution}{\textbf{Solution} \newline}
+ 
+\newcommand{\question}[2]{
+	\begin{center}
+		\Large{\textbf{#1 (#2)}} 
+	\end{center}
+}
+ 
+\begin{document}
+
+\begin{center}
+
+\Huge FL Questions $\{n \in [1, .. , 13] \: | \: n \% 3 == 2\}$
+
+\end{center}
+
+~\
+
+~\
+
+\begin{question}{Алфавит, язык, грамматика}{1}
+
+Алфавит - набор символов
+
+$L \subseteq \Sigma^*$
+
+
+
+\end{question}
+
+~\
+
+~\
+
+
+\begin{question}{Способы задания языка}{2}
+
+1) DFA
+
+2) NFA
+
+3) Regular expressions
+
+4) КС грамматики
+
+5) 
+
+\end{question}
+
+~\
+
+~\
+
+\begin{question}{Формальные грамматики}{0}
+
+\textbf{Формальная грамматика} - четверка G = (N, T, S, P)
+
+T - множество терминальных символов(алфавит)
+
+N - множество нетерминальных символов(синтаксические категории)
+
+$S \in N$ - стартовый символ
+
+P - множество продукций
+
+Определение продукций.
+
+\end{question}
+
+~\
+
+~\
+
+\begin{question}{Преобразования грамматик}{4}
+
+\textbf{1. Меняем стартовый символ}
+
+$S \rightarrow \varepsilon |S'$
+
+$S \Rightarrow^* L(G) \setminus {\varepsilon}$
+
+\textit{$\varepsilon$-порождающий} - это $A \in N$, если $A \Rightarrow^* \varepsilon$
+
+\textbf{2. Избавление от $\varepsilon$-порождающих}
+
+$A \rightarrow \varepsilon$ - удаляем
+
+Пусть было $A \rightarrow A_1 ... A_n$, из них $A_{i_1} ... A_{i_k}$ - были эпсилон-порождающими, тогда фигачим $2^k$ переходов через $|$. Так как каждое из A-шек может как войти, так и не войти.
+
+\textbf{3. Удаление цепных продукций}
+
+Строим транзитивное замыкание графа
+
+\textbf{4. Удаление бесполезных нетерминалов}
+
+Удаляем непорождающие нетерминалы - те, из которых недостижимы слова.
+
+Удаляем недостижимые из S нетерминалы
+
+\end{question}
+
+
+
+\begin{question}{Нормальная форма Хомского, алгоритм CYK}{5}
+
+Грамматика, для которой были выполнены преобразования из п.4 - грамматика в \textbf{нормальной форме Хомского}
+
+\textbf{Алгоритм Кока-Янгера-Касами}
+
+$M_{i,j,A}$ - верно ли, что $A \Rightarrow^* w_{i..j}, A \in N$
+
+1) $i == j \Rightarrow M_{i,j,A}$ - выводим ли итый символ строки из A
+
+2) $i < j$ Динамика обратно: перебираем все продукции из $A \rightarrow BC$, все разбиения подстроки $w_{i..j} = w_{i..k}w_{k+1...j}$, применяем "или"
+
+Время работы $|G| \cdot |w|^3$
+
+\end{question}
+
+~\
+
+~\
+
+\begin{question}{Вывод, дерево/лес вывода}{8}
+
+
+
+\end{question}
+
+
+
+
+\end{document}

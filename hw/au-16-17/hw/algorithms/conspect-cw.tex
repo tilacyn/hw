@@ -1,0 +1,59 @@
+\documentclass{article}
+
+\usepackage[T2A]{fontenc}           
+\usepackage[utf8]{inputenc}         
+\usepackage[russian,english]{babel} 
+\usepackage{amsmath,amssymb}        
+\usepackage{listings}
+\usepackage{cmll}
+\usepackage[left=15mm, top=1cm, right=15mm, bottom=1cm, nohead, footskip=1cm]{geometry}
+\usepackage{fontspec} 
+\usepackage{misccorr} 
+\setmainfont{Times New Roman}
+ 
+\newcommand{\problem}[1]{\textbf{Problem #1} \newline}
+  
+\newcommand{\solution}{\textbf{Solution} \newline}
+ 
+\newcommand{\question}[2]{
+	\begin{center}
+		\Large{\textbf{#1 (#2)}} 
+	\end{center}
+}
+
+\newcommand{\statement}[2]{\large{\textbf{#1}}}
+
+ 
+\begin{document}
+
+\begin{center}
+
+\Huge Algorithms CW Conspect
+
+\end{center}
+
+
+\textbf{NC} - схемы полиномиального размера и полилогарифмической глубиной
+
+\textbf{AC} - схемы, где на каждый вход может поступать полином битов. 
+
+\begin{question}{Task}{1}
+
+\begin{itemize}
+             
+	\item $Space(f^2) = Npspace(f)$
+
+	\item Верно, доказывали в ДЗ
+	
+	\item Наоборот, если $PH = PSPACE$, то сигмы коллапсируются
+	
+	\item Верно
+
+\end{itemize}
+ 
+\end{question}
+
+$L \subset NL \subset P \subset RP \subset NP \subset \Sigma^p_2 \subset \prod^p_3 \subset PH \subset PSPACE \subset NPSPACE \subset EXP$
+
+
+\end{document}

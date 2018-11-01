@@ -1,0 +1,65 @@
+\documentclass{article}
+
+\usepackage[T2A]{fontenc}           
+\usepackage[utf8]{inputenc}         
+\usepackage[russian,english]{babel} 
+\usepackage{amsmath,amssymb}        
+\usepackage{listings}
+\usepackage{cmll}
+\usepackage[left=15mm, top=1cm, right=15mm, bottom=1cm, nohead, footskip=1cm]{geometry}
+\usepackage{fontspec} 
+\usepackage{misccorr} 
+\setmainfont{Times New Roman}
+ 
+\newcommand{\problem}[1]{\textbf{Problem #1} \newline}
+  
+\newcommand{\solution}{\textbf{Solution} \newline}
+ 
+ 
+\begin{document}
+
+$\sum\limits_{-\infty}^{+\infty}{\dfrac{1}{(n^2 + 9)^2}} = -\pi \sum{res_{a_i} \: \dfrac{\cot{\pi z}}{(z^2 + 9)^2}}$, где $a_i$ - полюсы $f(z) = \dfrac{1}{(z^2 + 9)^2}$
+
+У нее два полюса второго порядка: $3i, -3i$
+
+Вычет в полюсе второго порядка равен
+
+$res_a = (f(z)(z - a)^2)^{\prime}|_a$
+
+$g(z) = \dfrac{\cot{\pi z}(z - 3i)^2}{(z^2 + 9)^2}^{\prime} = \dfrac{-\pi \dfrac{(z + 3i)^2}{\sin^2{\pi z}} - 2(z + 3i) \cot{\pi z} }{(z + 3i)^4}$
+
+~\
+
+$h(z) = \dfrac{\cot{\pi z}(z + 3i)^2}{(z^2 + 9)^2}^{\prime} = \dfrac{-\pi \dfrac{(z - 3i)^2}{\sin^2{\pi z}} - 2(z - 3i) \cot{\pi z} }{(z - 3i)^4}$
+
+~\
+
+$res_{3i} = g(3i) = \dfrac{\dfrac{36 \pi}{\sin^2{3 \pi i}} - 12 i \cot{3 \pi i} }{36^2} = \dfrac{\dfrac{36 \pi}{\sin^2{3 \pi i}} - 12 i \cot{3 \pi i} }{36^2}$
+
+~\
+
+$res_{-3i} = h(-3i) = \dfrac{\dfrac{36 \pi}{\sin^2{- 3 \pi i}} + 12 i \cot{-3 \pi i} }{36^2}$
+
+~\
+
+$\sin^2{3 \pi i} = \sin^2{-3 \pi i}$
+
+$\cot{3 \pi i} = - \cot{-3 \pi i}$
+
+Значит, $res_{3i} = res_{-3i} = \dfrac{\dfrac{36 \pi}{\sin^2{3 \pi i}} - 12 i \cot{3 \pi i} }{36^2}$
+
+$\sum\limits_{-\infty}^{+\infty}{\dfrac{1}{(n^2 + 9)^2}} = -\pi \sum{res_{a_i} \: \dfrac{\cot{\pi z}}{(z^2 + 9)^2}} = -2 \pi \dfrac{\dfrac{36 \pi}{\sin^2{3 \pi i}} - 12 i \cot{3 \pi i} }{36^2}$
+
+Значит, $\sum\limits_{1}^{+\infty}{\dfrac{1}{(n^2 + 9)^2}} = \dfrac{1}{2}\sum\limits_{-\infty}^{+\infty}{\dfrac{1}{(n^2 + 9)^2}} - \dfrac{1}{2} \dfrac{1}{81} = -\pi \dfrac{\dfrac{36 \pi}{\sin^2{3 \pi i}} - 12 i \cot{3 \pi i} }{36^2} - \dfrac{1}{162}$
+
+$\sin{3 \pi i} = \dfrac{i}{2}(e^{3 \pi} - e^{-3 \pi}) \approx 6195i$
+
+$\cot{3 \pi i} = --i\dfrac{e^{3 \pi} + e^{-3 \pi}}{e^{3 \pi} - e^{-3 \pi}} \approx -i$
+
+$\sin^2{3 \pi i} \approx 38378025$ 
+
+Таким образом,
+
+$-\pi \dfrac{\dfrac{36 \pi}{\sin^2{3 \pi i}} - 12 i \cot{3 \pi i} }{36^2} - \dfrac{1}{162} \approx 0.0229$
+
+\end{document}

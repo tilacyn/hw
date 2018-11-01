@@ -1,0 +1,22 @@
+\documentclass{article}
+
+\usepackage[T2A]{fontenc}           
+\usepackage[russian,english]{babel} 
+\usepackage[utf8]{inputenc}         
+\usepackage{amsmath,amssymb}        
+\usepackage{listings}
+\usepackage{cmll}
+\usepackage[left=15mm, top=1cm, right=15mm, bottom=1cm, nohead, footskip=1cm]{geometry} 
+\begin{document}
+
+Идея в том, чтобы понять порядок переменных по которым ты будешь интегрировать. Когда мы хотим узнать объем пересечения сферы и цилиндра, нам надо по факту проинтегрировать z(x,y) - как функцию двух переменных по полуокружности внизу (на плоскости z = 0). Поэтому интеграл получается двойной. Его можно было бы сделать тройным, добавив интегрирование единицы в еще один внутренний интеграл, границы интегрирования которого будут 0 и z(x,y). Еще раз z(x,y) - это высота точки на сфере.
+
+Двойной: $\int\limits_{-3}^{3}{\int\limits_{-\sqrt{9 - y^2}}^0{3\sqrt{1 - \dfrac{x^2 + y^2}{25}}dx}dy}$
+
+Тройной: $\int\limits_{-3}^{3}{\int\limits_{-\sqrt{9 - y^2}}^0{\int\limits_0^{3\sqrt{1 - \dfrac{x^2 + y^2}{25}}}{dz}dx}dy}$
+
+Бля, а в цилиндрических координатах просто збс
+
+$\int\limits_0^\pi{\int\limits_0^3{3 \sqrt{1 - \frac{r^2}{25}} dr}d \phi}$
+
+\end{document}

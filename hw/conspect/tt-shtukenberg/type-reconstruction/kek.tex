@@ -1,0 +1,100 @@
+\problemset{KEK}
+
+\begin{para}{Алгоритм вывода типов}
+
+\begin{enumerate}
+
+  \item Рекурсивно по структуре формулы построим построим по формуле A
+
+  $<E, \tau>$
+
+  E - набор уравнений в алг. термах, $\tau$ - тип A
+
+  Три случая
+
+	\begin{enumerate}
+
+  	  \item A = x, уравнений нет, тип А - это $\alpha_x$ - свежая типовая переменная
+
+ 	  \item A = PQ, $E_P \cup E_Q, \tau_P = \tau_Q \rightarrow \alpha_A, \alpha_A$
+ 
+ 	  \item $A = \lambda x.P$, $\langle E_P, \alpha_x \rightarrow \tau_P \rangle$
+
+	\end{enumerate}
+
+  \item Решим уравнения, получим S
+  
+  Применяем алгоритм унификации. Будем вместо $a \rightarrow b$ писать $\rightarrow a b$, 
+
+  \item Из решения E получим ответ $S(\tau)$
+  
+  \textit{Лемма}
+  
+  Если $\Gamma \vdash M : p$, то существует S - решение $E_M$
+  
+  $\Gamma = \{ S(\alpha_x) | x \in FV(M) \}$
+  
+  $p = S(\tau_M)$
+  
+  \textbf{Если S - решение $E_M$, то $\Gamma \vdash M : p$}
+  
+  Доказательство - индукция по структуре M
+
+\end{enumerate}
+
+\begin{defe}{Основная пара}
+
+Пара $\langle \Gamma, \tau \rangle$ - основная пара для терма M
+
+Если
+
+1. $ \Gamma \vdash M : \tau$
+
+2. $\Gamma' \vdash M : \tau'$, то существует S: $S(\Gamma) \subset \Gamma', S(\tau) = \tau'$
+
+\end{defe}
+
+\textbf{Пример}
+
+Черчевский нумерал
+
+\end{para}
+
+
+\begin{para}{Normalization}
+
+\begin{defe}{Strong, weak normalization}
+
+a) Если существует последовательность редукций, приводящая M нормальную форму, то он слабо нормализуем
+
+b) Если не существует бесконечной последовательности редукций, не приводящей M в нормальную форму, M сильно нормализуем
+
+\end{defe}
+
+Теория сильно/слабо нормализуема, если любой терм соответственно нормализуем
+
+\textbf{$KI \Omega$} - слабо нормализуема
+
+$\Omega$ ненормализуема
+
+$II$ - сильно нормализуемо
+
+Просто-типизированное $\lambda$- исчисление сильно нормализуемо
+
+Нетипизированное - ненормализуемо
+
+\textbf{Сильная влечет слабую}
+
+\end{para}
+
+\begin{para}{Комбинаторы}
+
+\textbf{Любое замкнутое лямбда выражение может быть записано с помощью комбинаторов K и S}
+
+$S = \lambda xyz.xz(yz)$ - verSchmelzen - сплавление
+
+$K = \lambda xy.x$ - Konstanz
+
+$I = \lambda x.x$ - Indentitat
+
+\end{para}

@@ -1,0 +1,87 @@
+\documentclass{article}
+
+\usepackage[T2A]{fontenc}           
+\usepackage[utf8]{inputenc}         
+\usepackage[russian,english]{babel} 
+\usepackage{amsmath,amssymb}        
+\usepackage{listings}
+\usepackage{cmll}
+\usepackage[left=15mm, top=1cm, right=15mm, bottom=1cm, nohead, footskip=1cm]{geometry}
+\usepackage{fontspec}
+\usepackage[usenames]{color}
+\usepackage{colortbl} 
+\usepackage{misccorr} 
+\setmainfont{Times New Roman}
+ 
+\newcommand{\problem}[1]{\textbf{Problem #1} \newline}
+  
+\newcommand{\solution}{\textbf{Solution} \newline}
+ 
+\newcommand{\question}[2]{
+	\begin{center}
+		\large{\textbf{#1 (#2)}} 
+	\end{center}
+}
+ 
+\begin{document}
+
+\begin{center}
+
+\Huge Algorithms
+
+\end{center}
+
+~\
+
+~\
+
+
+\begin{question}{Философский смысл класса. Метод борьбы с NP-трудностью задачи}{14}
+
+\end{question}
+
+~\
+
+~\
+
+\begin{question}{Метод диагонализации. Теорема об иерархии по времени.}{15}
+
+\textbf{Теорема}
+
+Пусть $f(n) \log{f(n)} = o(g(n))$. Тогда $DTime(f(n)) \subsetneq DTime(g(n))$
+
+Берем машину D, которая симулирует $M_x(x)$, но если работает больше $n^{1.4}$, то останавливается и возвращает 0. Иначе возвращает инвертированный ответ. Тогда пусть равенство есть, возьмем номер машины M, которая работает за f, такой, что D на нем отработает и вернет инвертированный ответ, противоречие.
+
+
+\end{question}
+
+~\
+
+~\
+
+\begin{question}{}{16}
+
+\end{question}
+
+~\
+
+~\
+
+\begin{question}{}{16}
+
+\end{question}
+
+~\
+
+~\
+
+\begin{question}{}{16}
+
+\end{question}
+
+~\
+
+~\
+
+
+\end{document}

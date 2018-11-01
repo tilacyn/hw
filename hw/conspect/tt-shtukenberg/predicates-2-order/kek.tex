@@ -1,0 +1,63 @@
+\problemset{KEK}
+
+\begin{para}{Строим новый нахуй язык}
+
+$\Phi = p \: \: | \: \: (\Phi \rightarrow \Phi) \: \: | \: \: \forall p.\Phi$
+
+Простой случай $p \in \{0, 1\} \Rightarrow \forall p. p \rightarrow p = T$
+
+$p \rightarrow Q$ - обычная импликация
+
+$\forall p.Q$ - подставляем все значения в Q и берем конъюнкцию
+
+Правила вывода
+
+$\Gamma \vdash \phi \: \: | \: \: \Gamma \vdash \forall p.\phi, p \notin FV(\Gamma)$
+
+$\Gamma \vdash \forall p.\phi \: \: | \: \: \Gamma \vdash \phi[p = \theta]$
+
+Сокращения
+
+\begin{itemize}
+
+  \item $\perp = \forall a.a$ - ложь
+
+Из этого следует, что из лжи выводится что угодно
+
+  \item $\phi \wedge \psi = \forall a. ((\phi \rightarrow \psi \rightarrow a) \rightarrow a)$ - конъюнкция
+  
+  \item $\phi \vee \psi = \forall a. ((\phi \rightarrow a) \rightarrow (\phi \rightarrow a) \rightarrow a)$ - дизъюнкция
+  
+  \item $\exists p. \phi = \forall b. ( \forall p. (\phi \rightarrow b)) \rightarrow b$ - квантор существования
+
+\end{itemize}
+
+\end{para}
+
+
+
+\begin{para}{F system}
+
+Язык
+
+$L = x \: \: | \: \: \lambda x : \tau. L \: \: | \: \: LL \: \: | \: \: \bigwedge \alpha. L \: \: | \: \: L \tau \: \: | \: \: $
+
+$\bigwedge \alpha. L$ - типовая абстракция
+
+$L \tau$ - типовое применение
+
+Типы
+
+$\tau  = \alpha \: \: | \: \: (\tau \rightarrow \tau) \: \: | \: \: ( \forall \alpha. \tau)$
+
+Новые правила вывода
+
+$\Gamma \vdash M : \sigma \Rightarrow \Gamma \vdash (\wedge \alpha. M) : \forall \alpha : \sigma$
+
+$\Gamma \vdash M: \forall \alpha : \sigma \Rightarrow \Gamma \vdash M \tau : \sigma[\alpha = \tau]$
+
+Пример черчевский нумерал
+
+$\wedge \alpha. \lambda f^{\alpha \rightarrow \alpha}. \lambda x^\lambda.f(fx) : \forall \alpha . (\alpha \rightarrow \alpha) \rightarrow (\alpha \rightarrow \alpha)$
+
+\end{para}
