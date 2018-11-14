@@ -1,0 +1,109 @@
+\begin{para}{4. Y-комбинатор. Парадокс Карри}
+
+\textbf{Комбинатор}
+
+Lambda-выражение, не имеющее свободных переменных
+
+\textbf{Y-combinator}
+
+$Y = \lambda f.(\lambda x.f(xx))(\lambda x.f(xx))$
+
+\textbf{Теорема. $Yf = f(Yf)$}
+
+Следствием является \textbf{теорема о неподвижной точке}: Любой терм имеет неподвижну точку, то есть $p : fp = p$
+
+\textbf{Рекурсия}
+
+Пишем вспомогательный терм fact'
+
+Тогла $fact = Y \: fact'$
+
+\textbf{Парадокс Карри}
+
+Ебемся в ухо
+
+\end{para}
+
+
+\begin{para}{5. Просто типизированное лямбда исчисление. Исчисление по Черчу и Карри. Изоморфизм Карри-Ховарда}
+
+Set P of the \textbf{\textit{simple types}} is the set of the strings defined by Grammar
+
+$\Pi = U | (\Pi \rightarrow \Pi)$, U - variables
+
+\textbf{\textit{Context}} is the set of pairs in the form
+
+$\{x_1 : \tau_1, ..., x_n : \tau_n\}$, x - variable, $\tau$ - type.
+
+Define typability relation
+
+We say that M is typable if there is such context $\Gamma$ and type $\sigma$, that $\Gamma \vdash M : \sigma$
+
+~\
+
+\textbf{Calculus a la Church}
+
+$\Lambda_\sigma$ is a set of all $\sigma$ typable terms.
+
+$V_\sigma$ is a set of all variables that are claimed to have type $\sigma$
+
+$x \in V_\sigma \Rightarrow x \in \Lambda_\sigma$
+
+\begin{center}
+$x \in V_\sigma \Rightarrow x \in \Lambda_\sigma$
+
+$M \in \Lambda_{\sigma \rightarrow \tau}, N \in \Lambda_\sigma \Rightarrow MN \in \Lambda_\tau$з
+
+$M \in \Lambda_\tau, x \in \Lambda_\sigma \Rightarrow \lambda x^\sigma.M \in \Lambda_{\sigma \rightarrow \tau}$
+\end{center}
+
+\textbf{Теорема}
+
+Уникальность типов в исчислении по Черчу
+
+$1. \Gamma \vdash M : \theta, \Gamma \vdash M : \tau \Rightarrow \theta = \tau$
+
+$2. \Gamma \vdash M : \theta, \Gamma \vdash N : \tau, M =_\beta N \Rightarrow \theta = \tau$
+
+~\
+
+\textbf{Curry-Howard isomorphism}
+
+Такой вот изоморфизм.
+
+\end{para}
+
+
+\begin{para}{7. Нетипизируемость Y - комбинатора. Слабая и сильная нормализации}
+
+
+\textbf{Weak normalization}
+
+$\Gamma \vdash^* M : \sigma \Rightarrow \exists M_1 \rightarrow_\beta M_2 \rightarrow_\beta ... \rightarrow_\beta M_n \in NF$
+
+Все термы типизированы по Черчу. Все типы - конечные деревья, где ветвление это стрелочка. Тогда $h(M)$ - высота дерева.
+
+$m(M) = (h(M), n)$, n - количество редексов высоты h(M)
+
+Алгоритм. Берем самый правый редекс высоты h(M) и его редуцируем. Факт в том, что количество редексов высоты h(M) уменьшилось, следовательно n--.
+
+
+\textbf{Сильная нормализация}
+
+$\Gamma \vdash^* M : \sigma$, тогда не существует бесконечной цепочки редукций
+
+\end{para}
+
+
+
+\begin{para}{8. Проверка, реконструкция, обитаемость типа. Аналоги этих задач в ИИВ}
+
+Проверка - верно ли, что в таком контексте у такого терма такой тип
+
+Реконструкция - существуют ли такие контекст и тип
+
+Обитаемость - подбираем терм и контекст
+
+
+
+\end{para}

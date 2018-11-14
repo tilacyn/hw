@@ -1,0 +1,285 @@
+\begin{para}{Грамматика}
+
+Построим грамматику
+
+$E \rightarrow E \: and \: T$
+
+$E \rightarrow E \: or \: T$
+
+$E \rightarrow T$
+
+$T \rightarrow (E)$
+
+$T \rightarrow not \: E$
+
+$T \rightarrow c$
+
+~\
+
+\begin{table}[h]
+
+\begin{center}
+
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Нетерминал} & \textbf{Описание}\\
+\hline
+E & Корректное выражение\\
+\hline
+T & Корректное выражение, не представимое в виде бинарной операции\\
+\hline
+
+\end{tabular}
+
+\end{center}
+
+\end{table}
+
+Избавимся от левой рекурсии
+
+$E \rightarrow T E'$
+
+$E' \rightarrow A E$
+
+$E' \rightarrow O E$
+
+$E' \rightarrow \varepsilon$
+
+$T \rightarrow N E$
+
+$T \rightarrow LER$
+
+$T \rightarrow V$
+
+$V \rightarrow c$
+
+$A \rightarrow \_and\_$
+
+$O \rightarrow \_or\_$
+
+$N \rightarrow not\_$
+
+$L \rightarrow ($
+
+$R \rightarrow )$
+
+Ниже представлены описания главных \textbf{нетерминалов}
+
+\begin{table}[h]
+
+\begin{center}
+
+\begin{tabular}{|p{0.2\linewidth}|p{0.4\linewidth}|} 
+
+\hline
+\textbf{Нетерминал} & \textbf{Описание}\\
+\hline
+E & Корректное выражение\\
+\hline
+T & Корректное выражение, которое нельзя представить в виде бинарной операции над двумя операндами (and или or)\\
+\hline
+E' & Продолжение корректного выражения, представимого в виде бинарной операции, после первого операнда\\
+\hline
+
+\end{tabular}
+
+\end{center}
+
+\end{table}
+
+Как видно, мы завели специальные нетерминалы для каждого термина
+ла, которые будут использоваться в парсере.
+
+\begin{table}[h]
+
+\begin{center}
+
+\begin{tabular}{|p{0.2\linewidth}|p{0.4\linewidth}|} 
+
+\hline
+\textbf{Нетерминал} & \textbf{Описание}\\
+\hline
+L & (\\
+\hline
+R & )\\
+\hline
+V & Any character between 'a' and 'z'\\
+\hline
+A & \_and\_\\
+\hline
+O & \_or\_\\
+\hline
+N & not\_\\
+\hline
+
+\end{tabular}
+
+\end{center}
+
+\end{table}
+
+\end{para}
+
+\newpage
+
+\begin{para}{Лексический анализатор}
+
+Построим класс Token для хранения токенов.
+
+\begin{table}[h]
+
+\begin{center}
+
+\begin{tabular}{|p{0.2\linewidth}|p{0.4\linewidth}|} 
+
+\hline
+\textbf{Терминал} & \textbf{Token}\\
+\hline
+\_and\_ & AND\\
+\hline
+\_or\_ & OR\\
+\hline
+not\_ & NOT\\
+\hline
+c(любой символ латинского алфавита) & VAR\\
+\hline
+( & LPAREN\\
+\hline
+) & RPAREN\\
+\hline
+\$ & END\\
+\hline
+
+\end{tabular}
+
+\end{center}
+
+\end{table}
+
+\end{para}
+
+\newpage
+
+\begin{para}{Синтаксический анализатор}
+
+Для начала построим множества FIRST и FOLLOW для нетерминалов
+
+\begin{table}[h]
+
+\begin{center}
+
+\begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.3\linewidth}|} 
+
+\hline
+\textbf{Нетерминал} & \textbf{FIRST} & \textbf{FOLLOW}\\
+\hline
+E & VAR, LPAREN, NOT & RPAREN, AND, OR, END\\
+\hline
+T & VAR, LPAREN, NOT & RPAREN, AND, OR, END\\
+\hline
+E' & AND, OR & RPAREN, AND, OR, END\\
+\hline
+
+\end{tabular}
+
+\end{center}
+
+\end{table}
+
+
+\end{para}
+
+\newpage
+
+\begin{para}{Тесты}
+
+\begin{table}[h]
+
+\begin{center}
+
+\begin{tabular}{|p{0.4\linewidth}|p{0.4\linewidth}|} 
+
+\hline
+\textbf{Тест} & \textbf{Описание}\\
+\hline
+v and g & Тест на правило $E' \rightarrow AE$\\
+\hline
+v or g & Тест на правило $E' \rightarrow OE$\\
+\hline
+v & Тест на правило $E' \rightarrow \varepsilon$\\
+\hline
+not v & Тест на правила $E' \rightarrow \varepsilon, T \rightarrow NE$\\
+\hline
+(v) & Тест на правила $E' \rightarrow \varepsilon, T \rightarrow (E)$\\
+\hline
+not v and g & Тест на два правила для $E'$ и на правило $T \rightarrow NE$\\
+\hline
+not v or g & Аналогичный но для or\\
+\hline
+v or not g & Поменяем местами\\
+\hline
+v or g and h & Тест на $E' \rightarrow OE, E' \rightarrow AE$\\
+\hline
+not v or (g and h) & Тест на оба правила для $T$\\
+\hline
+(v or g) and (not h) & Тоже тест на все правила\\
+\hline
+
+\end{tabular}
+
+\end{center}
+
+\end{table}
+
+Есть еще куча тестов
+
+А так же тесты на падение программы на некорректных входах
+
+\begin{table}[h]
+
+\begin{center}
+
+\begin{tabular}{|p{0.5\linewidth}|} 
+
+\hline
+\textbf{Тест}\\
+\hline
+v and\\
+\hline
+v or\\
+\hline
+not\\
+\hline
+v and g or\\
+\hline
+or v\\
+\hline
+and v\\
+\hline
+or v and\\
+\hline
+(v and g\\
+\hline
+v and g)\\
+\hline
+((v) and g\\
+\hline
+((v and g)\\
+\hline
+(v and g))\\
+\hline
+()\\
+\hline
+) v\\
+\hline
+v (\\
+\hline
+
+
+\end{tabular}
+
+\end{center}
+
+\end{table}
+
+\end{para}

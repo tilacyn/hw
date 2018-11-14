@@ -1,0 +1,42 @@
+\begin{para}{Преобразование атрибутов при устранении левой рекурсии}
+
+\textbf{Синтезируемые атрибуты}
+
+$A \rightarrow A\alpha, A_0.x = f(A_1.x, \alpha)$
+
+$A \rightarrow \beta, A_0.x = g(\beta)$
+
+~\
+
+Устраним левую рекурсию
+
+$A \rightarrow \beta A', A'.y = g(\beta), A.x = A'.x$
+
+$A' \rightarrow \alpha A', A_2'.y = f(A'_0.y, \alpha), A'_0.x = A'_2.x$
+
+$A' \rightarrow \varepsilon A'.x = A'.y$
+
+~\
+
+\textbf{Наследуемые атрибуты}
+
+$A \rightarrow A\alpha, A_1.x = f(A_0.x, \alpha), \alpha.x = g(A_0.x, A_1.x)$
+
+$A \rightarrow \beta, \beta.x = h(A.x)$
+
+Мы не можем посчитать атрибут беты, потому что во время вызова мы не будем знать глубину предстоящей рекурсии
+
+\end{para}
+
+
+\begin{para}{Атрибуты при восходящем разборе}
+
+$A \rightarrow \alpha, A.x = f(\alpha)$
+
+Атрибуты терминалов заполняются при считывании.
+
+Синтезируемые атрибуты нетерминалов заполняются очевидно во время свертки
+
+
+
+\end{para}
