@@ -1,0 +1,6 @@
+#!/bin/bash
+
+bison int-to-char.y
+
+cc int-to-char.tab.c -lm -o int-to-char
+

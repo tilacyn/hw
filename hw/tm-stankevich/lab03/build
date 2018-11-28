@@ -1,0 +1,5 @@
+#!/bin/bash
+
+bison -tv obfuscare.y
+
+cc obfuscare.tab.c -lm -o obfuscare

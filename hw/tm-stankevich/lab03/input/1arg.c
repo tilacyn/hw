@@ -1,0 +1,2 @@
+int kek (char lol) {
+}

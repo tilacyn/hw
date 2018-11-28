@@ -1,0 +1,833 @@
+Terminals unused in grammar
+
+   RSPAREN
+   LSPAREN
+
+
+State 13 conflicts: 1 shift/reduce
+State 41 conflicts: 1 shift/reduce
+State 54 conflicts: 1 shift/reduce
+
+
+Grammar
+
+    0 $accept: input $end
+
+    1 input: %empty
+    2      | mblanks fun mblanks
+
+    3 fun: head body RFPAREN
+
+    4 head: type BLANKS fname LPAREN hargs RPAREN mblanks LFPAREN mblanks
+
+    5 body: %empty
+    6     | body instr SEMICOLON mblanks
+
+    7 instr: declaration
+    8      | assignment
+    9      | declar_assign
+   10      | fcall
+   11      | return
+
+   12 declaration: type BLANKS name
+
+   13 assignment: name EQUALS BLANKS rvalue
+
+   14 declar_assign: type BLANKS name EQUALS mblanks rvalue
+
+   15 fcall: fname LPAREN args RPAREN mblanks
+
+   16 type: TYPE
+   17     | type PTR
+
+   18 name: NAME mblanks
+
+   19 fname: NAME mblanks
+
+   20 rvalue: name
+   21       | fcall
+   22       | NUMBER
+   23       | STRING
+
+   24 args: %empty
+   25     | mblanks rvalue
+   26     | args COMA mblanks rvalue mblanks
+
+   27 hargs: nohargs
+   28      | yeshargs
+
+   29 nohargs: %empty
+
+   30 yeshargs: mblanks type BLANKS name mblanks
+   31         | yeshargs COMA mblanks type BLANKS name mblanks
+
+   32 return: RETURN BLANKS rvalue
+
+   33 mblanks: %empty
+   34        | BLANKS
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+TYPE (258) 16
+NAME (259) 18 19
+RETURN (260) 32
+COMA (261) 26 31
+SEMICOLON (262) 6
+PTR (263) 17
+NUMBER (264) 22
+STRING (265) 23
+EQUALS (266) 13 14
+RPAREN (267) 4 15
+LPAREN (268) 4 15
+RSPAREN (269)
+LSPAREN (270)
+LFPAREN (271) 4
+RFPAREN (272) 3
+BLANKS (273) 4 12 13 14 30 31 32 34
+
+
+Nonterminals, with rules where they appear
+
+$accept (19)
+    on left: 0
+input (20)
+    on left: 1 2, on right: 0
+fun (21)
+    on left: 3, on right: 2
+head (22)
+    on left: 4, on right: 3
+body (23)
+    on left: 5 6, on right: 3 6
+instr (24)
+    on left: 7 8 9 10 11, on right: 6
+declaration (25)
+    on left: 12, on right: 7
+assignment (26)
+    on left: 13, on right: 8
+declar_assign (27)
+    on left: 14, on right: 9
+fcall (28)
+    on left: 15, on right: 10 21
+type (29)
+    on left: 16 17, on right: 4 12 14 17 30 31
+name (30)
+    on left: 18, on right: 12 13 14 20 30 31
+fname (31)
+    on left: 19, on right: 4 15
+rvalue (32)
+    on left: 20 21 22 23, on right: 13 14 25 26 32
+args (33)
+    on left: 24 25 26, on right: 15 26
+hargs (34)
+    on left: 27 28, on right: 4
+nohargs (35)
+    on left: 29, on right: 27
+yeshargs (36)
+    on left: 30 31, on right: 28 31
+return (37)
+    on left: 32, on right: 11
+mblanks (38)
+    on left: 33 34, on right: 2 4 6 14 15 18 19 25 26 30 31
+
+
+State 0
+
+    0 $accept: . input $end
+
+    BLANKS  shift, and go to state 1
+
+    TYPE      reduce using rule 33 (mblanks)
+    $default  reduce using rule 1 (input)
+
+    input    go to state 2
+    mblanks  go to state 3
+
+
+State 1
+
+   34 mblanks: BLANKS .
+
+    $default  reduce using rule 34 (mblanks)
+
+
+State 2
+
+    0 $accept: input . $end
+
+    $end  shift, and go to state 4
+
+
+State 3
+
+    2 input: mblanks . fun mblanks
+
+    TYPE  shift, and go to state 5
+
+    fun   go to state 6
+    head  go to state 7
+    type  go to state 8
+
+
+State 4
+
+    0 $accept: input $end .
+
+    $default  accept
+
+
+State 5
+
+   16 type: TYPE .
+
+    $default  reduce using rule 16 (type)
+
+
+State 6
+
+    2 input: mblanks fun . mblanks
+
+    BLANKS  shift, and go to state 1
+
+    $default  reduce using rule 33 (mblanks)
+
+    mblanks  go to state 9
+
+
+State 7
+
+    3 fun: head . body RFPAREN
+
+    $default  reduce using rule 5 (body)
+
+    body  go to state 10
+
+
+State 8
+
+    4 head: type . BLANKS fname LPAREN hargs RPAREN mblanks LFPAREN mblanks
+   17 type: type . PTR
+
+    PTR     shift, and go to state 11
+    BLANKS  shift, and go to state 12
+
+
+State 9
+
+    2 input: mblanks fun mblanks .
+
+    $default  reduce using rule 2 (input)
+
+
+State 10
+
+    3 fun: head body . RFPAREN
+    6 body: body . instr SEMICOLON mblanks
+
+    TYPE     shift, and go to state 5
+    NAME     shift, and go to state 13
+    RETURN   shift, and go to state 14
+    RFPAREN  shift, and go to state 15
+
+    instr          go to state 16
+    declaration    go to state 17
+    assignment     go to state 18
+    declar_assign  go to state 19
+    fcall          go to state 20
+    type           go to state 21
+    name           go to state 22
+    fname          go to state 23
+    return         go to state 24
+
+
+State 11
+
+   17 type: type PTR .
+
+    $default  reduce using rule 17 (type)
+
+
+State 12
+
+    4 head: type BLANKS . fname LPAREN hargs RPAREN mblanks LFPAREN mblanks
+
+    NAME  shift, and go to state 25
+
+    fname  go to state 26
+
+
+State 13
+
+   18 name: NAME . mblanks
+   19 fname: NAME . mblanks
+
+    BLANKS  shift, and go to state 1
+
+    BLANKS    [reduce using rule 33 (mblanks)]
+    $default  reduce using rule 33 (mblanks)
+
+    mblanks  go to state 27
+
+
+State 14
+
+   32 return: RETURN . BLANKS rvalue
+
+    BLANKS  shift, and go to state 28
+
+
+State 15
+
+    3 fun: head body RFPAREN .
+
+    $default  reduce using rule 3 (fun)
+
+
+State 16
+
+    6 body: body instr . SEMICOLON mblanks
+
+    SEMICOLON  shift, and go to state 29
+
+
+State 17
+
+    7 instr: declaration .
+
+    $default  reduce using rule 7 (instr)
+
+
+State 18
+
+    8 instr: assignment .
+
+    $default  reduce using rule 8 (instr)
+
+
+State 19
+
+    9 instr: declar_assign .
+
+    $default  reduce using rule 9 (instr)
+
+
+State 20
+
+   10 instr: fcall .
+
+    $default  reduce using rule 10 (instr)
+
+
+State 21
+
+   12 declaration: type . BLANKS name
+   14 declar_assign: type . BLANKS name EQUALS mblanks rvalue
+   17 type: type . PTR
+
+    PTR     shift, and go to state 11
+    BLANKS  shift, and go to state 30
+
+
+State 22
+
+   13 assignment: name . EQUALS BLANKS rvalue
+
+    EQUALS  shift, and go to state 31
+
+
+State 23
+
+   15 fcall: fname . LPAREN args RPAREN mblanks
+
+    LPAREN  shift, and go to state 32
+
+
+State 24
+
+   11 instr: return .
+
+    $default  reduce using rule 11 (instr)
+
+
+State 25
+
+   19 fname: NAME . mblanks
+
+    BLANKS  shift, and go to state 1
+
+    $default  reduce using rule 33 (mblanks)
+
+    mblanks  go to state 33
+
+
+State 26
+
+    4 head: type BLANKS fname . LPAREN hargs RPAREN mblanks LFPAREN mblanks
+
+    LPAREN  shift, and go to state 34
+
+
+State 27
+
+   18 name: NAME mblanks .
+   19 fname: NAME mblanks .
+
+    LPAREN    reduce using rule 19 (fname)
+    $default  reduce using rule 18 (name)
+
+
+State 28
+
+   32 return: RETURN BLANKS . rvalue
+
+    NAME    shift, and go to state 13
+    NUMBER  shift, and go to state 35
+    STRING  shift, and go to state 36
+
+    fcall   go to state 37
+    name    go to state 38
+    fname   go to state 23
+    rvalue  go to state 39
+
+
+State 29
+
+    6 body: body instr SEMICOLON . mblanks
+
+    BLANKS  shift, and go to state 1
+
+    $default  reduce using rule 33 (mblanks)
+
+    mblanks  go to state 40
+
+
+State 30
+
+   12 declaration: type BLANKS . name
+   14 declar_assign: type BLANKS . name EQUALS mblanks rvalue
+
+    NAME  shift, and go to state 41
+
+    name  go to state 42
+
+
+State 31
+
+   13 assignment: name EQUALS . BLANKS rvalue
+
+    BLANKS  shift, and go to state 43
+
+
+State 32
+
+   15 fcall: fname LPAREN . args RPAREN mblanks
+
+    BLANKS  shift, and go to state 1
+
+    COMA      reduce using rule 24 (args)
+    RPAREN    reduce using rule 24 (args)
+    $default  reduce using rule 33 (mblanks)
+
+    args     go to state 44
+    mblanks  go to state 45
+
+
+State 33
+
+   19 fname: NAME mblanks .
+
+    $default  reduce using rule 19 (fname)
+
+
+State 34
+
+    4 head: type BLANKS fname LPAREN . hargs RPAREN mblanks LFPAREN mblanks
+
+    BLANKS  shift, and go to state 1
+
+    TYPE      reduce using rule 33 (mblanks)
+    $default  reduce using rule 29 (nohargs)
+
+    hargs     go to state 46
+    nohargs   go to state 47
+    yeshargs  go to state 48
+    mblanks   go to state 49
+
+
+State 35
+
+   22 rvalue: NUMBER .
+
+    $default  reduce using rule 22 (rvalue)
+
+
+State 36
+
+   23 rvalue: STRING .
+
+    $default  reduce using rule 23 (rvalue)
+
+
+State 37
+
+   21 rvalue: fcall .
+
+    $default  reduce using rule 21 (rvalue)
+
+
+State 38
+
+   20 rvalue: name .
+
+    $default  reduce using rule 20 (rvalue)
+
+
+State 39
+
+   32 return: RETURN BLANKS rvalue .
+
+    $default  reduce using rule 32 (return)
+
+
+State 40
+
+    6 body: body instr SEMICOLON mblanks .
+
+    $default  reduce using rule 6 (body)
+
+
+State 41
+
+   18 name: NAME . mblanks
+
+    BLANKS  shift, and go to state 1
+
+    BLANKS    [reduce using rule 33 (mblanks)]
+    $default  reduce using rule 33 (mblanks)
+
+    mblanks  go to state 50
+
+
+State 42
+
+   12 declaration: type BLANKS name .
+   14 declar_assign: type BLANKS name . EQUALS mblanks rvalue
+
+    EQUALS  shift, and go to state 51
+
+    $default  reduce using rule 12 (declaration)
+
+
+State 43
+
+   13 assignment: name EQUALS BLANKS . rvalue
+
+    NAME    shift, and go to state 13
+    NUMBER  shift, and go to state 35
+    STRING  shift, and go to state 36
+
+    fcall   go to state 37
+    name    go to state 38
+    fname   go to state 23
+    rvalue  go to state 52
+
+
+State 44
+
+   15 fcall: fname LPAREN args . RPAREN mblanks
+   26 args: args . COMA mblanks rvalue mblanks
+
+    COMA    shift, and go to state 53
+    RPAREN  shift, and go to state 54
+
+
+State 45
+
+   25 args: mblanks . rvalue
+
+    NAME    shift, and go to state 13
+    NUMBER  shift, and go to state 35
+    STRING  shift, and go to state 36
+
+    fcall   go to state 37
+    name    go to state 38
+    fname   go to state 23
+    rvalue  go to state 55
+
+
+State 46
+
+    4 head: type BLANKS fname LPAREN hargs . RPAREN mblanks LFPAREN mblanks
+
+    RPAREN  shift, and go to state 56
+
+
+State 47
+
+   27 hargs: nohargs .
+
+    $default  reduce using rule 27 (hargs)
+
+
+State 48
+
+   28 hargs: yeshargs .
+   31 yeshargs: yeshargs . COMA mblanks type BLANKS name mblanks
+
+    COMA  shift, and go to state 57
+
+    $default  reduce using rule 28 (hargs)
+
+
+State 49
+
+   30 yeshargs: mblanks . type BLANKS name mblanks
+
+    TYPE  shift, and go to state 5
+
+    type  go to state 58
+
+
+State 50
+
+   18 name: NAME mblanks .
+
+    $default  reduce using rule 18 (name)
+
+
+State 51
+
+   14 declar_assign: type BLANKS name EQUALS . mblanks rvalue
+
+    BLANKS  shift, and go to state 1
+
+    $default  reduce using rule 33 (mblanks)
+
+    mblanks  go to state 59
+
+
+State 52
+
+   13 assignment: name EQUALS BLANKS rvalue .
+
+    $default  reduce using rule 13 (assignment)
+
+
+State 53
+
+   26 args: args COMA . mblanks rvalue mblanks
+
+    BLANKS  shift, and go to state 1
+
+    $default  reduce using rule 33 (mblanks)
+
+    mblanks  go to state 60
+
+
+State 54
+
+   15 fcall: fname LPAREN args RPAREN . mblanks
+
+    BLANKS  shift, and go to state 1
+
+    BLANKS    [reduce using rule 33 (mblanks)]
+    $default  reduce using rule 33 (mblanks)
+
+    mblanks  go to state 61
+
+
+State 55
+
+   25 args: mblanks rvalue .
+
+    $default  reduce using rule 25 (args)
+
+
+State 56
+
+    4 head: type BLANKS fname LPAREN hargs RPAREN . mblanks LFPAREN mblanks
+
+    BLANKS  shift, and go to state 1
+
+    $default  reduce using rule 33 (mblanks)
+
+    mblanks  go to state 62
+
+
+State 57
+
+   31 yeshargs: yeshargs COMA . mblanks type BLANKS name mblanks
+
+    BLANKS  shift, and go to state 1
+
+    $default  reduce using rule 33 (mblanks)
+
+    mblanks  go to state 63
+
+
+State 58
+
+   17 type: type . PTR
+   30 yeshargs: mblanks type . BLANKS name mblanks
+
+    PTR     shift, and go to state 11
+    BLANKS  shift, and go to state 64
+
+
+State 59
+
+   14 declar_assign: type BLANKS name EQUALS mblanks . rvalue
+
+    NAME    shift, and go to state 13
+    NUMBER  shift, and go to state 35
+    STRING  shift, and go to state 36
+
+    fcall   go to state 37
+    name    go to state 38
+    fname   go to state 23
+    rvalue  go to state 65
+
+
+State 60
+
+   26 args: args COMA mblanks . rvalue mblanks
+
+    NAME    shift, and go to state 13
+    NUMBER  shift, and go to state 35
+    STRING  shift, and go to state 36
+
+    fcall   go to state 37
+    name    go to state 38
+    fname   go to state 23
+    rvalue  go to state 66
+
+
+State 61
+
+   15 fcall: fname LPAREN args RPAREN mblanks .
+
+    $default  reduce using rule 15 (fcall)
+
+
+State 62
+
+    4 head: type BLANKS fname LPAREN hargs RPAREN mblanks . LFPAREN mblanks
+
+    LFPAREN  shift, and go to state 67
+
+
+State 63
+
+   31 yeshargs: yeshargs COMA mblanks . type BLANKS name mblanks
+
+    TYPE  shift, and go to state 5
+
+    type  go to state 68
+
+
+State 64
+
+   30 yeshargs: mblanks type BLANKS . name mblanks
+
+    NAME  shift, and go to state 41
+
+    name  go to state 69
+
+
+State 65
+
+   14 declar_assign: type BLANKS name EQUALS mblanks rvalue .
+
+    $default  reduce using rule 14 (declar_assign)
+
+
+State 66
+
+   26 args: args COMA mblanks rvalue . mblanks
+
+    BLANKS  shift, and go to state 1
+
+    $default  reduce using rule 33 (mblanks)
+
+    mblanks  go to state 70
+
+
+State 67
+
+    4 head: type BLANKS fname LPAREN hargs RPAREN mblanks LFPAREN . mblanks
+
+    BLANKS  shift, and go to state 1
+
+    $default  reduce using rule 33 (mblanks)
+
+    mblanks  go to state 71
+
+
+State 68
+
+   17 type: type . PTR
+   31 yeshargs: yeshargs COMA mblanks type . BLANKS name mblanks
+
+    PTR     shift, and go to state 11
+    BLANKS  shift, and go to state 72
+
+
+State 69
+
+   30 yeshargs: mblanks type BLANKS name . mblanks
+
+    BLANKS  shift, and go to state 1
+
+    $default  reduce using rule 33 (mblanks)
+
+    mblanks  go to state 73
+
+
+State 70
+
+   26 args: args COMA mblanks rvalue mblanks .
+
+    $default  reduce using rule 26 (args)
+
+
+State 71
+
+    4 head: type BLANKS fname LPAREN hargs RPAREN mblanks LFPAREN mblanks .
+
+    $default  reduce using rule 4 (head)
+
+
+State 72
+
+   31 yeshargs: yeshargs COMA mblanks type BLANKS . name mblanks
+
+    NAME  shift, and go to state 41
+
+    name  go to state 74
+
+
+State 73
+
+   30 yeshargs: mblanks type BLANKS name mblanks .
+
+    $default  reduce using rule 30 (yeshargs)
+
+
+State 74
+
+   31 yeshargs: yeshargs COMA mblanks type BLANKS name . mblanks
+
+    BLANKS  shift, and go to state 1
+
+    $default  reduce using rule 33 (mblanks)
+
+    mblanks  go to state 75
+
+
+State 75
+
+   31 yeshargs: yeshargs COMA mblanks type BLANKS name mblanks .
+
+    $default  reduce using rule 31 (yeshargs)

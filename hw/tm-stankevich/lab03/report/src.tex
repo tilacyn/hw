@@ -1,0 +1,191 @@
+\begin{para}{Грамматика}
+
+Построим грамматику
+
+Она будет разбирать функци написанные на C у которых в теле возможны 5 операций:
+
+\begin{enumerate}
+
+	\item Объявление переменной
+	
+	\item Присваивание
+	
+	\item Объявление и присваивание
+	
+	\item Вызов функции
+	
+	\item Возвращение значения
+
+\end{enumerate}
+
+
+
+
+
+
+
+\begin{itemize}
+
+	\item input -> fun
+	
+		Будем обрабатывать функции на С.
+	
+	\item fun -> head body RFPAREN
+	
+		Функция состоит из верхушки, тела и закрывающей скобки
+	
+	\item head -> type fname LPAREN hargs RPAREN LFPAREN
+	
+		Верхушка состоит из типа возвращаемого значения, имени функции, объявлений аргументов в круглых скобках и открывающей фигурной скобки
+	
+	\item body ->
+	
+		\begin{enumerate}
+			
+			\item eps
+			
+			Пустое тело
+			
+			\item body instr SEMICOLON			
+
+			Непустое тело представляется в виде последовательности инструкций, разделенных точкой с запятой.
+		
+		\end{enumerate}
+		
+	\item instr ->
+	
+		\begin{enumerate}
+		
+			\item declaration -> type name
+			
+			Объявление переменной - это тип и имя переменной
+			
+			\item declare\_assign -> type name EQUALS rvalue
+			
+			Объявление и присваивание
+			
+			\item assignment -> name EQUALS rvalue
+			
+			Присваивание
+			
+			\item return -> RETURN rvalue
+			
+			Возвращение значения
+			
+			\item fcall ->fname LPAREN args RPAREN
+			
+			Вызов функции	
+		
+		\end{enumerate}
+		
+	\item hargs ->
+		
+		\begin{enumerate}
+			
+			\item \%empty
+			
+			Либо у функции нет аргументов (отдельный нетерминал)
+			
+			\item type name
+			
+			Один аргумент
+			
+			\item hargs COMA type name
+		
+			Много аргументов			
+			
+		\end{enumerate}
+		
+	Аналогично с args, только там не указывается тип
+	
+	\item type ->
+	
+		\begin{enumerate}
+
+			\item TYPE
+			
+			Обычный тип
+			
+			\item type PTR
+			
+			Указатель
+		
+		\end{enumerate}
+		
+	\item name -> NAME
+	
+	Имя переменной
+	
+	\item fname -> NAME
+	
+	Имя функции
+	
+	\item rvalue ->
+	
+		\begin{enumerate}
+		
+			\item name
+			
+			\item fcall
+			
+			\item NUMBER
+			
+			\item STRING
+		
+		\end{enumerate}			
+	
+
+\end{itemize}
+
+
+\end{para}
+
+\newpage
+
+\begin{para}{Лексический анализатор}
+
+Построим класс Token для хранения токенов.
+
+\begin{table}[h]
+
+\begin{center}
+
+\begin{tabular}{|p{0.2\linewidth}|p{0.4\linewidth}|} 
+
+\hline
+\textbf{Терминал} & \textbf{Token}\\
+\hline
+Тип без * & TYPE\\
+\hline
+Строка & STRING\\
+\hline
+Число & NUMBER\\
+\hline
+Последовательность пустых символов & BLANKS\\
+\hline
+Открывающие, закрывающие скобки & ..\\
+\hline
+return & RETURN\\
+\hline
+= & EQUALS\\
+\hline
+* & PTR\\
+\hline
+; & SEMICOLON\\
+\hline
+, & COMA\\
+\hline
+Идентификатор, не являющийся ключевым словом & NAME\\
+\hline
+\$ & END\\
+\hline
+
+\end{tabular}
+
+\end{center}
+
+\end{table}
+
+\end{para}
+
+
