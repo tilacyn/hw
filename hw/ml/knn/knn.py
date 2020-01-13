@@ -200,8 +200,6 @@ def loo(kernel_function, distance_function, window, k, distance_coefficient):
 	confusion_matrix = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
 	for i in range(len(data)):
 		train_set = np.delete(data, i, 0)
-		#print(data)
-		#print(train_set)
 		test_object = data[i]
 		result = test(train_set, test_object, kernel_function, distance_function, window, k, distance_coefficient)
 		expected_class = target_value_ids[test_object[target_value_index]]

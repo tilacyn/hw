@@ -138,17 +138,32 @@ else:
 r = 0
 kernel_smoothing = 0
 
+
 for obj in objects:
 	if window == 0:
-		print(1)
-		return
-	weight = kernel_function(distance_function(obj, q) / window)
+		if obj[:-1] == q:
+			weight = kernel_function(0)
+		else:
+			weight = 0
+	else:
+		weight = kernel_function(distance_function(obj, q) / window)
 	kernel_smoothing += weight
 	inc = obj[m] * weight
 	r += inc
 
 
+
+if window == 0 and kernel_smoothing == 0:
+	sum = 0
+	for obj in objects:
+		sum += obj[m]
+	r = sum / n
+
 if kernel_smoothing == 0:
 	kernel_smoothing = 1
 
+
+
 print(r / kernel_smoothing)
+
+

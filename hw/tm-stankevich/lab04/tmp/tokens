@@ -1,0 +1,7 @@
+
+
+#token{string} PLUS -> "\+"
+#token{regex, string} NUM -> "[1-9][0-9]*"
+#token{skip, string, regex} BLANKS -> "\n|\r|\t| "
+#token{regex} WORD -> "[a-z]+"
+
