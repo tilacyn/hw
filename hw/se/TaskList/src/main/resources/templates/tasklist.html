@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+<h1 th:text="'Tasklist ' + ${listName}"></h1>
+
+<a href="/">Back</a>
+
+<form method="POST" th:action="@{/tasklist/addTask}" th:object="${newTask}">
+    <input type="text" th:field="*{name}">
+    <input type="submit" value="Create new task">
+</form>
+
+
+<table>
+    <thead>
+    <tr>
+        <th> Name</th>
+        <th> Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${tasks.empty}">
+        <td> No tasks, create one!</td>
+    </tr>
+
+    <tr th:each="task : ${tasks}">
+        <td><span th:text="${task.name}"></span></td>
+        <td>
+            <span th:text="${task.isDone() ? 'Done' : 'Not done'}"></span>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<form method="POST" th:action="@{/tasklist/markAsDone}" th:object="${taskToBeMarked}">
+    <input type="text" th:field="*{name}">
+    <input type="submit" value="Mark task as done">
+</form>
+
+<form method="POST" th:action="@{/tasklist/deleteTask}" th:object="${taskToBeDeleted}">
+    <input type="text" th:field="*{name}">
+    <input type="submit" value="Delete task">
+</form>
+
+</body>
+</html>

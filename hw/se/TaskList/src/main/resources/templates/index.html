@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<h1 th:text="Lists"></h1>
+
+
+<form method="POST" th:action="@{/add}" th:object="${newList}">
+    <input type="text" th:field="*{name}">
+    <input type="submit" value="Create new tasklist">
+</form>
+
+
+<table>
+    <thead>
+    <tr>
+        <th> Available lists</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${lists.empty}">
+        <td> No lists available, create one!</td>
+    </tr>
+    <tr th:each="list : ${lists}">
+        <td><a th:href="@{'/tasklist?name=' + ${list.name}}" th:text="${list.name}"></a></td>
+    </tr>
+    </tbody>
+</table>
+
+<form method="POST" th:action="@{/delete}" th:object="${listToBeDeleted}">
+    <input type="text" th:field="*{name}">
+    <input type="submit" value="Delete task list">
+</form>
+
+</body>
+</html>
