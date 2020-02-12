@@ -1,0 +1,82 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage[OT1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+\author{Максим Крючков, М3439}
+\title{Метод Фон Неймана для исследования устойчивости схемы}
+
+\newenvironment{para}[1]
+{\begin{Large}
+\textbf{#1}
+\end{Large}
+\vspace{0.5cm}}
+{\vspace{1cm}}
+
+
+\begin{document}
+
+\maketitle
+
+
+$$\dfrac{\delta T}{\delta t} + u \dfrac{\delta T}{\delta x} - X \dfrac{\delta^2T}{\delta x^2} = 0$$
+
+Построим схему:
+
+~\
+
+$\dfrac{T_k^{n + 1} - T_k^n}{\Delta t} + u \dfrac{T_k^n - T_{k - 1}^n}{\Delta x} - \chi \dfrac{T_{k - 1}^n - 2T_k^n + T_{k + 1}^n}{\Delta x^2} = 0$
+
+~\
+
+Обозначим $s = \dfrac{u \Delta t}{\Delta x}, r = \dfrac{\chi \Delta t}{\Delta x^2}$ и домножим на $\Delta t$
+
+~\
+
+$T_k^{n + 1} - T_k^n + s(T_k^n - T_{k - 1}^n) - r(T^n_{k - 1} - 2T_k^n + T_{k + 1}^n) = 0$
+
+~\
+
+$\lambda^{n + 1}e^{i \alpha k} - \lambda^{n}e^{i \alpha k} + s(\lambda^{n}e^{i \alpha k} - \lambda^ne^{i \alpha (k - 1)}) - r(\lambda^{n}e^{i \alpha (k - 1)} - 2 \lambda^{n}e^{i \alpha k} + \lambda^{n}e^{i \alpha (k + 1)}) = 0$
+
+~\
+
+Поделим на $\lambda^n e^{i \alpha (k - 1)}$
+
+~\
+
+$\lambda e^{i \alpha} - e^{i \alpha} + s(e^{i \alpha} - 1) - r(1 - 2 e^{i \alpha} + e^{2 i \alpha}) = 0$
+
+~\
+
+$\lambda = 1 - s + \dfrac{s}{e^{i \alpha}} + \dfrac{r}{e^{i \alpha}} - 2r + re^{i \alpha}$
+
+~\
+
+$\lambda = 1 - s + s(\cos{\alpha} - i \sin{\alpha}) + r(\cos{\alpha} - i \sin{\alpha}) - 2r + r(\cos{\alpha} + i \sin{\alpha})$
+
+~\
+
+$\lambda = 1 - s + s(\cos{\alpha} - i \sin{\alpha}) + r(\cos{\alpha} - i \sin{\alpha}) - 2r + r(\cos{\alpha} + i \sin{\alpha}$
+
+~\
+
+Наша задача - решить неравенство $| \lambda | < 1$
+
+$|\lambda|^2 = 1 + s^2 + 4r^2 + (s^2 + 4sr + 4r^2)\cos^2{\alpha} + (s + 2r)(2 - 2s)\cos{\alpha} + s^2 \sin^2{\alpha} < 1$
+
+~\
+
+Опуская выкладки, получаем:
+
+~\
+
+$(s + 2r - 1)(s + 2r)\sin^2{\alpha / 2} < r(r + s)\sin^2{\alpha}$
+
+\end{document}
