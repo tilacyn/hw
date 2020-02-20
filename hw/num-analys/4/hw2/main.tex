@@ -19,11 +19,21 @@
 \section{2-е Задание}
 
 \subsection{Уравнение Теплопроводности}
+
 $\frac{\delta T}{\delta t} - U\frac{\delta T}{\delta x} - \chi \frac{\delta^{2} T}{\delta x^{2}} = Q$\\
+
+$r = \dfrac{\kappa \Delta t}{\Delta x^2}$ - сеточное число Рейнольдса
+
+$s = \dfrac{u \Delta t}{\Delta x}$ - сеточное число Струхала
+
 \subsubsection{Уравнение Конвективного переноса}\\
-$\frac{\delta T}{\delta t} - U\frac{\delta T}{\delta x} = 0$\\\\
+
+$\frac{\delta T}{\delta t} - U\frac{\delta T}{\delta x} = 0$\\\\ - 
+
 Решение имеет вид: \\\\
-$T(t, x) = T_{0}(x - Ut)$
+
+$T(t, x) = T_{0}(x - Ut)$ - это сдвиг начальных условий
+
 \begin{table}[h!]
     \centering
     \begin{tabular}{|c|c|c|}
@@ -38,13 +48,21 @@ $T(t, x) = T_{0}(x - Ut)$
     \caption{Устойчивость методов для уравнения конвективного переноса}
     \label{tab:my_label}
 \end{table}\\
+
 При s > 1 неустойчивая\\
+
 При s = 1 неустойчивая, точная\\
+
 При s < 1 устойчивая\\
+
 \subsubsection{Уравнение Теплопроводности в неподвижной среде}\\
+
 $\frac{\delta T}{\delta t} - \chi \frac{\delta^{2} T}{\delta x^{2}} = 0$\\\\
+
 Решение имеет вид: \\\\
+
 $T(t, x) = \frac{1}{\sqrt{t}e^{\frac{-x^{2}}{4\chi t}}}$
+
 \begin{table}[h!]
     \centering
     \begin{tabular}{|c|c|}
@@ -57,9 +75,13 @@ $T(t, x) = \frac{1}{\sqrt{t}e^{\frac{-x^{2}}{4\chi t}}}$
     \caption{Устойчивость методов для уравнения Теплопроводности в неподвижной среде}
     \label{tab:my_label}
 \end{table}\\
-При s < $\frac{1}{3}$ устойчивая\\
-При $\frac{1}{2}$ < s < $\frac{1}{3}$ Слабая устойчивость\\
-При s > $\frac{1}{2}$ неустойчивая\\
+
+
+При r < $\frac{1}{3}$ устойчивая, хорошо повторяет точное решение\\
+
+При $\frac{1}{2}$ < r < $\frac{1}{3}$ Слабая устойчивость, пилоообразные колебания, затухающие с ростом n\\
+
+При r > $\frac{1}{2}$ неустойчивая\\
 
 
 \end{document}
