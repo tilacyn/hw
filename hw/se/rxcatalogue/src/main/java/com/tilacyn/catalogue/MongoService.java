@@ -1,10 +1,12 @@
 package com.tilacyn.catalogue;
 
-import com.mongodb.rx.client.*;
+import com.mongodb.rx.client.MongoClient;
+import com.mongodb.rx.client.MongoClients;
+import com.mongodb.rx.client.MongoDatabase;
+import com.mongodb.rx.client.Success;
 import org.bson.Document;
 import org.json.JSONObject;
 import rx.Observable;
-import rx.Scheduler;
 import rx.schedulers.Schedulers;
 
 import java.io.IOException;
@@ -12,7 +14,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 
-public class MongoDriver {
+public class MongoService {
     private MongoClient mongoClient = MongoClients.create("mongodb://localhost:27017");
 
     private static final String DB_NAME = "rxcatalogue";
