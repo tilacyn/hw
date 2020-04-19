@@ -32,5 +32,10 @@ public class ExchangeController {
         return service.buy(symbol, qty);
     }
 
+    @PutMapping("/sell")
+    public double sell(@RequestParam(name = "symbol") String symbol, @RequestParam(name = "qty") int qty) {
+        return service.sell(symbol, qty);
+    }
+
 
 }

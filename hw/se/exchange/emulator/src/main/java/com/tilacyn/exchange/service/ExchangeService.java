@@ -58,4 +58,8 @@ public class ExchangeService {
     public double buy(String symbol, int qty) {
         return getQuote(symbol) * qty;
     }
+
+    public double sell(String symbol, int qty) {
+        return getQuote(symbol) * qty;
+    }
 }
