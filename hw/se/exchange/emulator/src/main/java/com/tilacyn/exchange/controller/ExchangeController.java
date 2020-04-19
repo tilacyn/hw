@@ -1,13 +1,36 @@
 package com.tilacyn.exchange.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.tilacyn.exchange.service.ExchangeService;
+import com.tilacyn.exchange.to.AddCompanyTO;
+import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class StockController {
+@AllArgsConstructor
+public class ExchangeController {
 
-    @GetMapping("/name")
-    public String hello() {
-        return "Hello, ";
+    private ExchangeService service;
+
+    @PutMapping("/company/add")
+    public String addCompany(@RequestBody AddCompanyTO addCompanyTO) {
+        service.addCompany(addCompanyTO);
+        return "Successfully added";
     }
+
+    @GetMapping("/quote")
+    public String getQuote(@RequestParam(name = "symbol") String symbol) {
+        return String.valueOf(service.getQuote(symbol));
+    }
+
+    @GetMapping("/volume")
+    public String getVolume(@RequestParam(name = "symbol") String symbol) {
+        return String.valueOf(service.getVolume(symbol));
+    }
+
+    @PutMapping("/buy")
+    public double buy(@RequestParam(name = "symbol") String symbol, @RequestParam(name = "qty") int qty) {
+        return service.buy(symbol, qty);
+    }
+
+
 }

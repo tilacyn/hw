@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Apple Inc",
+    "symbol": "AAPL",
+    "volume": 1e10,
+    "price": 250
+  },
+  {
+    "name": "Alphabet C Inc",
+    "symbol": "GOOG",
+    "volume": 1e10,
+    "price": 1300
+  }
+]
