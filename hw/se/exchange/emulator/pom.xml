@@ -18,6 +18,11 @@
             <artifactId>json</artifactId>
             <version>20190722</version>
         </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.9.4</version>
+        </dependency>
     </dependencies>
 
 
@@ -61,11 +66,11 @@
                                     </exec>
                                 </cmd>
                             </build>
-                            <run>
-                                <ports>
-                                    <port>8080:8080</port>
-                                </ports>
-                            </run>
+<!--                            <run>-->
+<!--                                <ports>-->
+<!--                                    <port>8080:8080</port>-->
+<!--                                </ports>-->
+<!--                            </run>-->
                         </image>
                     </images>
                 </configuration>
