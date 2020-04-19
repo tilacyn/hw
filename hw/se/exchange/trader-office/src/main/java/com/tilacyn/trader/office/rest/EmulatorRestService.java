@@ -33,7 +33,7 @@ public class EmulatorRestService {
 
     @SneakyThrows
     public double buy(String symbol, int qty) {
-        URIBuilder builder = new URIBuilder(String.format(urlTemplate, port, "buy"))
+        URIBuilder builder = new URIBuilder(String.format(urlTemplate, ip, port, "buy"))
                 .addParameter("symbol", symbol)
                 .addParameter("qty", String.valueOf(qty));
         HttpPut put = new HttpPut(builder.build());
@@ -42,7 +42,7 @@ public class EmulatorRestService {
 
     @SneakyThrows
     public double sell(String symbol, int qty) {
-        URIBuilder builder = new URIBuilder(String.format(urlTemplate, port, "sell"))
+        URIBuilder builder = new URIBuilder(String.format(urlTemplate, ip, port, "sell"))
                 .addParameter("symbol", symbol)
                 .addParameter("qty", String.valueOf(qty));
         HttpPut put = new HttpPut(builder.build());

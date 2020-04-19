@@ -23,7 +23,7 @@ public class TraderStore {
         trader.setBalance(newBalance);
     }
 
-    public void sell(int id, String symbol, int quantity) {
-
+    public void add(Trader trader) {
+        traders.put(trader.getId(), trader);
     }
 }
